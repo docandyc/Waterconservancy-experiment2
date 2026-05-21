@@ -42,7 +42,7 @@ ROI_BOUNDS = {
 }
 
 # 处理的月份列表 (格式: YYYY_MM)
-MONTHS = ["2025_05", "2025_06", "2025_07", "2025_08", "2025_09", "2025_10"]
+MONTHS = ["2024_05", "2024_06", "2024_07", "2024_08", "2024_09", "2024_10"]
 
 UTM_EPSG = 32650
 MIN_AREA_M2 = 5000
@@ -53,24 +53,21 @@ MIN_AREA_M2 = 5000
 def get_band_paths(month_str):
     """
     返回某月份的 B03 和 B11 文件路径
-    请根据实际下载的文件命名格式修改此函数
-
-    常见命名格式:
-    - Copernicus Browser: T50TLK_20250501T023551_B03_10m.jp2
-    - 手动重命名: B03_2025_05.tif
+    数据按月存放在子目录中: raw_sentinel2/2024_05/T50TLK_..._B03_10m.jp2
     """
     b03_path = None
     b11_path = None
 
-    year_month = month_str.replace("_", "")  # "202505"
+    month_dir = os.path.join(INPUT_DIR, month_str)
+    if not os.path.isdir(month_dir):
+        return None, None
 
-    for f in os.listdir(INPUT_DIR):
+    for f in os.listdir(month_dir):
         fname = f.upper()
-        if year_month in fname or month_str in f:
-            if "B03" in fname:
-                b03_path = os.path.join(INPUT_DIR, f)
-            elif "B11" in fname:
-                b11_path = os.path.join(INPUT_DIR, f)
+        if "B03" in fname and (f.endswith('.jp2') or f.endswith('.tif')):
+            b03_path = os.path.join(month_dir, f)
+        elif "B11" in fname and (f.endswith('.jp2') or f.endswith('.tif')):
+            b11_path = os.path.join(month_dir, f)
 
     return b03_path, b11_path
 

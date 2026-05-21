@@ -3,7 +3,7 @@
 直接在本机 Python 环境运行，无需 QGIS
 
 数据: ArcGIS Living Atlas / ESRI 10m Land Cover
-水体类别值: 2 (ESRI Land Cover 编码)
+水体类别值: 1 (Water) + 4 (Flooded Vegetation)
 源数据CRS: EPSG:32650 (UTM Zone 50N)
 """
 
