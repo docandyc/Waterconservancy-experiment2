@@ -1,0 +1,38 @@
+[
+  {
+    "month": "2024_05",
+    "product": "S2B_MSIL2A_20240526T030519_N0510_R075_T50TMK_20240526T052545.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  },
+  {
+    "month": "2024_06",
+    "product": "S2B_MSIL2A_20240615T030529_N0510_R075_T50TLK_20240615T052249.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  },
+  {
+    "month": "2024_07",
+    "product": "S2A_MSIL2A_20240710T030551_N0510_R075_T50TLK_20240710T065851.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  },
+  {
+    "month": "2024_08",
+    "product": "S2B_MSIL2A_20240814T030529_N0511_R075_T50TMK_20240814T062958.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  },
+  {
+    "month": "2024_09",
+    "product": "S2B_MSIL2A_20240923T030519_N0511_R075_T50TMK_20240923T063436.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  },
+  {
+    "month": "2024_10",
+    "product": "S2B_MSIL2A_20241003T030529_N0511_R075_T50TMK_20241003T062937.SAFE",
+    "cloud_cover": 100.0,
+    "status": "ok"
+  }
+]

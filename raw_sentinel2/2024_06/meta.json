@@ -1,0 +1,8 @@
+{
+  "product": "S2B_MSIL2A_20240615T030529_N0510_R075_T50TLK_20240615T052249.SAFE",
+  "cloud_cover": 100.0,
+  "tile": "T50TLK",
+  "date": "20240615T030529",
+  "b3": "/Users/tls/code/\u6c34\u5229\u4fe1\u606f/EXP3/raw_sentinel2/2024_06/T50TLK_20240615T030529_B03_10m.jp2",
+  "b11": "/Users/tls/code/\u6c34\u5229\u4fe1\u606f/EXP3/raw_sentinel2/2024_06/T50TLK_20240615T030529_B11_20m.jp2"
+}
