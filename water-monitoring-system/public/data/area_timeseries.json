@@ -1,0 +1,43 @@
+{
+  "reservoir": "官厅水库",
+  "reservoir_en": "Guanting Reservoir",
+  "unit": "km2",
+  "data": [
+    {
+      "date": "2017",
+      "water_area_km2": 73.58
+    },
+    {
+      "date": "2018",
+      "water_area_km2": 76.11
+    },
+    {
+      "date": "2019",
+      "water_area_km2": 78.57
+    },
+    {
+      "date": "2020",
+      "water_area_km2": 75.17
+    },
+    {
+      "date": "2021",
+      "water_area_km2": 74.76
+    },
+    {
+      "date": "2022",
+      "water_area_km2": 80.79
+    },
+    {
+      "date": "2023",
+      "water_area_km2": 81.31
+    },
+    {
+      "date": "2024",
+      "water_area_km2": 82.88
+    },
+    {
+      "date": "2025",
+      "water_area_km2": 97.82
+    }
+  ]
+}

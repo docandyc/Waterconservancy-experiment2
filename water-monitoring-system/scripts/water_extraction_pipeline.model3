@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "name": "官厅水库水体提取自动化流水线",
+    "description": "裁剪 → 水体提取(NoData) → 矢量化 → 碎斑剔除 → UTM重投影 → 面积计算 → GeoJSON导出",
+    "author": "数据与空间分析组",
+    "version": "1.0"
+  },
+  "steps": [
+    {
+      "id": 1,
+      "name": "ROI裁剪",
+      "tool": "gdal:cliprasterbyextent",
+      "params": {
+        "INPUT": "${input_tif}",
+        "PROJWIN": "115.43,115.93,40.18,40.40 [EPSG:4326]",
+        "OUTPUT": "${temp_dir}/clipped.tif"
+      }
+    },
+    {
+      "id": 2,
+      "name": "水体像元提取(NoData优化)",
+      "tool": "gdal:rastercalculator",
+      "params": {
+        "EXPRESSION": "numpy.where(numpy.isin(A, [1, 4]), 1, numpy.nan)",
+        "INPUT_A": "${temp_dir}/clipped.tif",
+        "NO_DATA": "nan",
+        "OUTPUT": "${temp_dir}/water_binary.tif"
+      }
+    },
+    {
+      "id": 3,
+      "name": "栅格转矢量(Polygonize)",
+      "tool": "gdal:polygonize",
+      "params": {
+        "INPUT": "${temp_dir}/water_binary.tif",
+        "BAND": 1,
+        "FIELD": "DN",
+        "OUTPUT": "${temp_dir}/water_raw.shp"
+      }
+    },
+    {
+      "id": 4,
+      "name": "重投影到UTM Zone 50N",
+      "tool": "native:reprojectlayer",
+      "params": {
+        "INPUT": "${temp_dir}/water_raw.shp",
+        "TARGET_CRS": "EPSG:32650",
+        "OUTPUT": "${temp_dir}/water_utm.shp"
+      }
+    },
+    {
+      "id": 5,
+      "name": "计算面积字段",
+      "tool": "native:fieldcalculator",
+      "params": {
+        "INPUT": "${temp_dir}/water_utm.shp",
+        "FIELD_NAME": "area_m2",
+        "FORMULA": "$area",
+        "OUTPUT": "${temp_dir}/water_utm_area.shp"
+      }
+    },
+    {
+      "id": 6,
+      "name": "自适应碎斑剔除(50像元=5000m²)",
+      "tool": "native:extractbyexpression",
+      "params": {
+        "INPUT": "${temp_dir}/water_utm_area.shp",
+        "EXPRESSION": "\"area_m2\" >= 5000",
+        "OUTPUT": "${temp_dir}/water_clean.shp"
+      }
+    },
+    {
+      "id": 7,
+      "name": "回投到EPSG:4326",
+      "tool": "native:reprojectlayer",
+      "params": {
+        "INPUT": "${temp_dir}/water_clean.shp",
+        "TARGET_CRS": "EPSG:4326",
+        "OUTPUT": "${output_geojson}"
+      }
+    }
+  ],
+  "parameters": {
+    "input_tif": "输入年度土地覆盖 .tif 文件路径",
+    "temp_dir": "中间文件临时目录",
+    "output_geojson": "输出标准 GeoJSON 文件路径"
+  }
+}

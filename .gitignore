@@ -1,0 +1,12 @@
+.DS_Store
+.claude/
+.vscode/
+*.log
+
+raw_sentinel2/
+raw_tif/
+
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/.vite/

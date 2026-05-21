@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "官厅水库分析框",
+        "name_en": "Guanting Reservoir ROI"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              115.43,
+              40.18
+            ],
+            [
+              115.93,
+              40.18
+            ],
+            [
+              115.93,
+              40.4
+            ],
+            [
+              115.43,
+              40.4
+            ],
+            [
+              115.43,
+              40.18
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
